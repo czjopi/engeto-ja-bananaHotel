@@ -27,6 +27,10 @@ public class Booking {
     setVacationType(vacationType);
   }
 
+  public Booking(Room room, List<Guest> guests, VacationType vacationType) {
+    this(room, guests, LocalDate.now(), LocalDate.now().plusDays(6), vacationType);
+  }
+
   // endregion
 
   // region getters and setters

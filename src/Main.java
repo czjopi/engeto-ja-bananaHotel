@@ -36,7 +36,9 @@ public class Main {
             LocalDate.of(2021, 9, 14),
             VacationType.HOLIDAY);
 
-    List<Booking> bookings = List.of(booking1, booking2);
+    Booking booking3 = new Booking(room2, List.of(guest2), VacationType.HOLIDAY);
+
+    List<Booking> bookings = List.of(booking1, booking2, booking3);
 
     // print bookings
     for (Booking booking : bookings) {
