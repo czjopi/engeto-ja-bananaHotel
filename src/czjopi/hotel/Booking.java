@@ -86,5 +86,24 @@ public class Booking {
   public void setVacationType(VacationType vacationType) {
     this.vacationType = vacationType;
   }
+
   // endregion
+
+  public String getDescription() {
+    StringBuilder sb = new StringBuilder();
+    sb.append(
+        String.format(
+            "Booking for room %d from %s to %s for %d guests:\n",
+            room.getRoomNumber(),
+            startDate.format(Guest.DATE_FORMATTER),
+            endDate.format(Guest.DATE_FORMATTER),
+            guests.size()));
+    sb.append(String.format("  Reservation type: %s\n", vacationType));
+    sb.append(String.format("  Price per night: %s CZK\n", room.getPricePerNight()));
+    sb.append("  Guests:\n");
+    for (Guest guest : guests) {
+      sb.append(String.format("    - %s\n", guest.getDescription()));
+    }
+    return sb.toString();
+  }
 }

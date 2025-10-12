@@ -1,6 +1,7 @@
 package czjopi.hotel;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Guest {
   // region attributes
@@ -9,6 +10,8 @@ public class Guest {
   private LocalDate birthDate;
 
   // endregion
+
+  public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("d.M.yyyy");
 
   // region constructors
   public Guest(String name, String surname, LocalDate birthDate) {
@@ -43,5 +46,10 @@ public class Guest {
   public void setBirthDate(LocalDate birthDate) {
     this.birthDate = birthDate;
   }
+
   // endregion
+
+  public String getDescription() {
+    return String.format("%s %s (%s)", name, surname, birthDate.format(DATE_FORMATTER));
+  }
 }

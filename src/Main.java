@@ -4,9 +4,7 @@ import czjopi.hotel.Room;
 import czjopi.hotel.VacationType;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Locale;
 
 public class Main {
   public static void main(String[] args) {
@@ -40,26 +38,9 @@ public class Main {
 
     List<Booking> bookings = List.of(booking1, booking2);
 
-    // prepare date formatter
-    DateTimeFormatter localFormatter =
-        DateTimeFormatter.ofPattern("d.M.yyyy").withLocale(Locale.getDefault());
-
     // print bookings
     for (Booking booking : bookings) {
-      System.out.printf(
-          "Booking for room %d from %s to %s for %d guests:\n",
-          booking.getRoom().getRoomNumber(),
-          booking.getStartDate().format(localFormatter),
-          booking.getEndDate().format(localFormatter),
-          booking.getGuests().size());
-      System.out.println("  Reservation type: " + booking.getVacationType());
-      System.out.println("  Price per night: " + booking.getRoom().getPricePerNight() + " CZK");
-      System.out.println("  Guests:");
-      for (Guest guest : booking.getGuests()) {
-        String birthDateFormatted = guest.getBirthDate().format(localFormatter);
-        System.out.printf(
-            "    - %s %s (%s)\n", guest.getName(), guest.getSurname(), birthDateFormatted);
-      }
+      System.out.println(booking.getDescription());
     }
   }
 }
