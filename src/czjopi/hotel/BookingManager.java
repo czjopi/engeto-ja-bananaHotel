@@ -1,0 +1,53 @@
+package czjopi.hotel;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * The BookingManager class is responsible for managing a list of bookings. It provides methods to
+ * add, retrieve, and clear bookings, as well as to retrieve an immutable copy of the booking list.
+ */
+public class BookingManager {
+  private List<Booking> bookingList = new ArrayList<>();
+
+  /**
+   * Adds a booking to the booking list.
+   *
+   * @param booking the booking to add
+   * @throws IllegalArgumentException if the booking is null
+   */
+  public void addBooking(Booking booking) {
+    if (booking == null) {
+      throw new IllegalArgumentException("Booking cannot be null");
+    }
+    bookingList.add(booking);
+  }
+
+  /**
+   * Retrieves a booking from the booking list by its index.
+   *
+   * @param index the index of the booking to retrieve
+   * @return the booking at the specified index
+   * @throws IndexOutOfBoundsException if the index is out of range
+   */
+  public Booking getBooking(int index) {
+    if (index < 0 || index >= bookingList.size()) {
+      throw new IndexOutOfBoundsException("Invalid booking index");
+    }
+    return bookingList.get(index);
+  }
+
+  /**
+   * Returns an immutable copy of the booking list.
+   *
+   * @return an unmodifiable list of bookings
+   */
+  public List<Booking> getBookings() {
+    return List.copyOf(bookingList);
+  }
+
+  /** Clears all bookings from the booking list. */
+  public void clearBookings() {
+    bookingList.clear();
+  }
+}
