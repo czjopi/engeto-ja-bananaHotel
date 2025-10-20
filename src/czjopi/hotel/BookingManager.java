@@ -1,7 +1,9 @@
 package czjopi.hotel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The BookingManager class is responsible for managing a list of bookings. It provides methods to
@@ -112,5 +114,32 @@ public class BookingManager {
     }
 
     return holidayBookings;
+  }
+
+  // 8. Statistics of booking by guest count
+  /**
+   * Returns a mapping of guest counts to the number of bookings with that guest count. - total
+   * bookings with 1 guest - total bookings with 2 guests - total bookings with more than 2 guests
+   *
+   * @return a map where the key is the guest count and the value is the number of bookings
+   */
+  private Map<Integer, Integer> getBookingStatisticsByGuestCount() {
+    Map<Integer, Integer> stats = new HashMap<>();
+    for (Booking booking : bookingList) {
+      switch (booking.getGuestCount()) {
+        case 1 -> stats.put(1, stats.getOrDefault(1, 0) + 1);
+        case 2 -> stats.put(2, stats.getOrDefault(2, 0) + 1);
+        default -> stats.put(3, stats.getOrDefault(3, 0) + 1); // 3 represents more than 2 guests
+      }
+    }
+    return stats;
+  }
+
+  /** Prints the booking statistics by guest count to the console. */
+  public void printGuestStatistics() {
+    Map<Integer, Integer> stats = getBookingStatisticsByGuestCount();
+    System.out.println("Bookings with 1 guest: " + stats.getOrDefault(1, 0));
+    System.out.println("Bookings with 2 guests: " + stats.getOrDefault(2, 0));
+    System.out.println("Bookings with more than 2 guests: " + stats.getOrDefault(3, 0));
   }
 }
