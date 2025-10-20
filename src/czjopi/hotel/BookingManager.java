@@ -85,4 +85,32 @@ public class BookingManager {
     }
     return (double) totalGuests / bookingList.size();
   }
+
+  // 7. Return first N holiday bookings
+  /**
+   * Returns the first N bookings with VacationType HOLIDAY based on the number of guests.
+   *
+   * @param n the number of first bookings to return
+   * @return a list of the top N HOLIDAY bookings
+   * @throws IllegalArgumentException if n is less than or equal to 0
+   */
+  public List<Booking> getTopNHolidayBookings(int n) {
+    if (n <= 0) {
+      throw new IllegalArgumentException("N must be greater than 0");
+    }
+
+    List<Booking> holidayBookings = new ArrayList<>();
+
+    for (Booking booking : bookingList) {
+      if (booking.getVacationType() == VacationType.HOLIDAY) {
+        holidayBookings.add(booking);
+      }
+
+      if (holidayBookings.size() == n) {
+        break;
+      }
+    }
+
+    return holidayBookings;
+  }
 }
