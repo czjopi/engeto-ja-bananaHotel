@@ -50,4 +50,21 @@ public class BookingManager {
   public void clearBookings() {
     bookingList.clear();
   }
+
+  // 5. Count of Working Bookings
+
+  /**
+   * Returns the number of bookings with VacationType BUSINESS.
+   *
+   * @return the count of BUSINESS bookings
+   */
+  public int getNumberOfWorkingBookings() {
+    int count = 0;
+    for (Booking booking : bookingList) {
+      if (booking.getVacationType() == VacationType.BUSINESS) {
+        count++;
+      }
+    }
+    return count;
+  }
 }
