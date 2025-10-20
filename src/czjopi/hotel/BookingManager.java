@@ -67,4 +67,22 @@ public class BookingManager {
     }
     return count;
   }
+
+  // 6. Average number of guests per booking
+
+  /**
+   * Returns the average number of guests per booking.
+   *
+   * @return the average number of guests, or 0 if there are no bookings
+   */
+  public double getAverageGuests() {
+    if (bookingList.isEmpty()) {
+      return 0.0;
+    }
+    int totalGuests = 0;
+    for (Booking booking : bookingList) {
+      totalGuests += booking.getGuestCount();
+    }
+    return (double) totalGuests / bookingList.size();
+  }
 }

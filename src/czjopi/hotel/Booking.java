@@ -110,4 +110,14 @@ public class Booking {
     }
     return sb.toString();
   }
+
+  // 6. Average number of guests per booking
+  /**
+   * Returns the number of guests in this booking.
+   *
+   * @return the number of guests
+   */
+  public int getGuestCount() {
+    return guests.size();
+  }
 }
