@@ -143,4 +143,29 @@ public class Booking {
     BigDecimal pricePerNight = room.getPricePerNight();
     return pricePerNight.multiply(length);
   }
+
+  // 11. Formatted booking summary
+  // dateFrom - dateTo: main guest name (date of birth)[number of guests, sea view:
+  // yes/no] for CZK
+
+  /**
+   * Returns a formatted summary of the booking.
+   *
+   * @return the formatted booking summary
+   */
+  public String getFormattedSummary() {
+    Guest mainGuest = guests.get(0);
+    String seaView = room.isWithSeaView() ? "yes" : "no";
+    BigDecimal totalPrice = calculateTotalPrice();
+    return String.format(
+        "%s - %s: %s %s (%s) [number of guests: %d, sea view: %s] for %s CZK",
+        startDate.format(Guest.DATE_FORMATTER),
+        endDate.format(Guest.DATE_FORMATTER),
+        mainGuest.getName(),
+        mainGuest.getSurname(),
+        mainGuest.getBirthDate().format(Guest.DATE_FORMATTER),
+        guests.size(),
+        seaView,
+        totalPrice);
+  }
 }
