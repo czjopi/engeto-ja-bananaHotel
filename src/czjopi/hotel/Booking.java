@@ -120,4 +120,14 @@ public class Booking {
   public int getGuestCount() {
     return guests.size();
   }
+
+  // 9. Get booking length
+  /**
+   * Returns the length of the booking in days.
+   *
+   * @return the length of the booking in days
+   */
+  public int getBookingLength() {
+    return startDate.until(endDate).getDays();
+  }
 }
