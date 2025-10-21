@@ -1,5 +1,6 @@
 package czjopi.hotel;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -129,5 +130,17 @@ public class Booking {
    */
   public int getBookingLength() {
     return startDate.until(endDate).getDays();
+  }
+
+  // 10. Calculate total price
+  /**
+   * Calculates the total price of the booking.
+   *
+   * @return the total price of the booking
+   */
+  public BigDecimal calculateTotalPrice() {
+    BigDecimal length = new BigDecimal(getBookingLength());
+    BigDecimal pricePerNight = room.getPricePerNight();
+    return pricePerNight.multiply(length);
   }
 }
